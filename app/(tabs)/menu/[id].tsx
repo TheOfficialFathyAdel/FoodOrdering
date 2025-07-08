@@ -1,22 +1,31 @@
 import { Button, Image, Pressable, Text, View } from "react-native";
 import tw from "twrnc";
-import { Stack, useLocalSearchParams } from "expo-router";
+import { Stack, useLocalSearchParams, useRouter } from "expo-router";
 import products from "@/assets/data/products";
 import { useState } from "react";
+import { PizzaSize, Product } from "@/types/types";
+import { useCart } from "@/providers/CartProvider";
 
-const sizes = ["S", "M", "L", "XL"];
+const sizes: PizzaSize[] = ["S", "M", "L", "XL"];
 
 export default function ProductDetailsScreen() {
   const { id } = useLocalSearchParams();
-  const [selectedSize, setSelectedSize] = useState("M");
+  const [selectedSize, setSelectedSize] = useState<PizzaSize>("M");
   const product = products.find((p) => p.id.toString() == id);
-
+  const router = useRouter();
+  const { addItem } = useCart();
   const addToCart = () => {
-    console.warn("Added to Cart size", selectedSize);
+    if (!product) {
+      return null;
+    }
+    addItem(product as Product, selectedSize);
+    router.push("/cart");
   };
   return (
     <View style={tw`bg-white flex-1 p-2`}>
-      <Stack.Screen options={{ title: product?.name }} />
+      <Stack.Screen
+        options={{ title: product?.name, headerTitleAlign: "center" }}
+      />
       <Image
         source={{ uri: product?.image }}
         style={tw`w-full aspect-square`}
@@ -47,7 +56,7 @@ export default function ProductDetailsScreen() {
       </Text>
       <Pressable
         onPress={addToCart}
-        style={tw`bg-[#2f95dc] h-18 items-center justify-center rounded-full mb-4`}
+        style={tw`bg-[#2f95dc] h-18 items-center justify-center rounded-full mb-4 `}
       >
         <Text style={tw`text-xl font-bold text-white`}>Add to cart</Text>
       </Pressable>
