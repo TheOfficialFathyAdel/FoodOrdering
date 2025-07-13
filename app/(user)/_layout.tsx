@@ -35,12 +35,20 @@ export default function TabLayout() {
           tabBarIcon: ({ color }) => (
             <TabBarIcon name="cutlery" color={color} />
           ),
+          tabBarLabelStyle: {
+            fontSize: 14, // ✅ Increase the font size here
+            fontWeight: "bold", // optional, for clearer emphasis
+          },
         }}
       />
       <Tabs.Screen
         name="two"
         options={{
           title: "Orders",
+          tabBarLabelStyle: {
+            fontSize: 14, // ✅ Increase the font size here
+            fontWeight: "bold", // optional, for clearer emphasis
+          },
           tabBarIcon: ({ color }) => <TabBarIcon name="list" color={color} />,
         }}
       />
