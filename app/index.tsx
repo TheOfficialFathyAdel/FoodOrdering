@@ -20,6 +20,13 @@ export default function Index() {
           <Text style={tw`text-xl font-bold text-white`}>Admin</Text>
         </Pressable>
       </Link>
+      <Link href={"/(auth)/sign-in"} asChild>
+        <Pressable
+          style={tw`bg-[#2f95dc] h-18 items-center justify-center rounded-full mb-4`}
+        >
+          <Text style={tw`text-xl font-bold text-white`}>SignIn</Text>
+        </Pressable>
+      </Link>
     </View>
   );
 }

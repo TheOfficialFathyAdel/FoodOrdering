@@ -56,9 +56,10 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="two"
+        name="orders"
         options={{
           title: "Orders",
+          headerShown: false,
           tabBarLabelStyle: {
             fontSize: 14, // ✅ Increase the font size here
             fontWeight: "bold", // optional, for clearer emphasis

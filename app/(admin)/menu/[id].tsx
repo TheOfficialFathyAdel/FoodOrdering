@@ -37,11 +37,12 @@ export default function ProductDetailsScreen() {
         {product?.name}
       </Text>
       <Text style={tw`text-2xl font-bold `}>Price: {product?.price}$</Text>
-
       <Stack.Screen
         options={{
           headerRight: () => (
-            <Pressable onPress={() => router.push("/(admin)/menu")}>
+            <Pressable
+              onPress={() => router.push(`/(admin)/menu/create?id=${id}`)}
+            >
               {({ pressed }) => (
                 <FontAwesome
                   name="pencil"
